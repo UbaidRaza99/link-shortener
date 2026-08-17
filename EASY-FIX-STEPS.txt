@@ -1,0 +1,91 @@
+=====================================
+  SHORT URL FIX - 2 MINUTES SETUP
+=====================================
+
+PROBLEM: 
+URL bohot bara hai: link-shortener-n1bfvgojq-raza1075ansari-3952s-projects.vercel.app
+
+
+SOLUTION (Choose One):
+=====================================
+
+OPTION 1: SET PRODUCTION DOMAIN (EASIEST - 30 SECONDS)
+-------------------------------------------------------
+
+1. Open browser: https://vercel.com/raza1075ansari-3952s-projects
+
+2. Click on "link-shortener" project
+
+3. Go to "Settings" tab (left sidebar)
+
+4. Click "Domains" section
+
+5. You'll see current domain - Click "Edit" or "Add"
+
+6. Type new domain: link-shortener.vercel.app
+   (Remove the long preview part)
+
+7. Click "Add"
+
+8. DONE! New URL will be: link-shortener.vercel.app/abc123
+
+
+OPTION 2: CUSTOM VERCEL SUBDOMAIN (2 MINUTES)
+----------------------------------------------
+
+Same steps as above, but in step 6:
+Type: u-links.vercel.app
+(ya koi bhi short naam jo available ho)
+
+Final URL: u-links.vercel.app/abc123
+
+
+OPTION 3: FREE .TK DOMAIN (10 MINUTES)
+---------------------------------------
+
+1. Visit: https://www.freenom.com
+
+2. Search: ulink.tk (ya koi naam)
+
+3. Click "Get it now" → "Checkout"
+
+4. Sign up with email
+
+5. Complete free registration
+
+6. Go to Vercel → Settings → Domains
+
+7. Add: ulink.tk
+
+8. Freenom mein nameservers update:
+   (Vercel will show you exact nameservers)
+   
+9. Wait 5-10 minutes for DNS
+
+10. DONE! URL: ulink.tk/abc123
+
+
+=====================================
+RECOMMENDED: OPTION 1 or 2
+=====================================
+
+Option 1/2 is fastest and easiest!
+Just login to Vercel dashboard and change domain.
+
+
+SCREENSHOTS/HELP:
+If you're on Settings page and don't see Domains:
+- Look for "Deployment Domains" or "Production Domain"
+- Click "Visit Project Settings" if needed
+- Domain section will be there
+
+
+IMPORTANT:
+After changing domain, copy NEW production URL and test!
+Old preview URLs will stop working eventually.
+
+
+=====================================
+NEED HELP?
+Send me screenshot of Vercel Settings page
+=====================================

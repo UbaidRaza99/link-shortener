@@ -3,6 +3,7 @@ const urlForm = document.getElementById('urlForm');
 const longUrlInput = document.getElementById('longUrl');
 const resultDiv = document.getElementById('result');
 const shortUrlInput = document.getElementById('shortUrl');
+const shortUrlDisplay = document.getElementById('shortUrlDisplay');
 const copyBtn = document.getElementById('copyBtn');
 const copyMessage = document.getElementById('copyMessage');
 const urlsList = document.getElementById('urlsList');
@@ -33,10 +34,16 @@ urlForm.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Show result with cleaner display
+            // Extract just the short code
             const shortCode = data.shortUrl.split('/').pop();
+            
+            // Store full URL in hidden field
             shortUrlInput.value = data.shortUrl;
-            shortUrlInput.dataset.fullUrl = data.shortUrl;
+            
+            // Display only the short code
+            shortUrlDisplay.value = `🔗 ${shortCode}`;
+            shortUrlDisplay.dataset.fullUrl = data.shortUrl;
+            
             resultDiv.classList.remove('hidden');
             
             // Clear form
@@ -55,28 +62,41 @@ urlForm.addEventListener('submit', async (e) => {
 
 // Copy to clipboard
 copyBtn.addEventListener('click', () => {
-    const fullUrl = shortUrlInput.dataset.fullUrl || shortUrlInput.value;
+    const fullUrl = shortUrlInput.value;
     
     // Modern clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(fullUrl).then(() => {
             showCopySuccess();
+        }).catch(() => {
+            // Fallback
+            fallbackCopy(fullUrl);
         });
     } else {
-        // Fallback
-        shortUrlInput.select();
-        document.execCommand('copy');
-        showCopySuccess();
+        fallbackCopy(fullUrl);
     }
 });
 
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopySuccess();
+}
+
 function showCopySuccess() {
     copyMessage.classList.remove('hidden');
-    copyBtn.textContent = 'Copied!';
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = '✓ Copied!';
     
     setTimeout(() => {
         copyMessage.classList.add('hidden');
-        copyBtn.textContent = 'Copy';
+        copyBtn.textContent = originalText;
     }, 2000);
 }
 

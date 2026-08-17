@@ -28,12 +28,13 @@
 
             <div id="result" class="result hidden">
                 <div class="result-content">
-                    <p class="result-label">Your shortened URL:</p>
+                    <p class="result-label">Your shortened link:</p>
                     <div class="short-url-container">
-                        <input type="text" id="shortUrl" readonly>
-                        <button id="copyBtn" class="btn-copy">Copy</button>
+                        <input type="text" id="shortUrlDisplay" readonly value="Loading...">
+                        <input type="hidden" id="shortUrl">
+                        <button id="copyBtn" class="btn-copy">Copy Full Link</button>
                     </div>
-                    <p class="success-message hidden" id="copyMessage">✓ Copied to clipboard!</p>
+                    <p class="success-message hidden" id="copyMessage">✓ Full URL copied to clipboard!</p>
                 </div>
             </div>
         </div>

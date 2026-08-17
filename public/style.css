@@ -190,19 +190,22 @@ header p {
     align-items: center;
 }
 
-#shortUrl {
+#shortUrlDisplay {
     flex: 1;
-    padding: 14px 20px;
-    font-size: 14px;
+    padding: 16px 24px;
+    font-size: 24px;
     border: 2px solid rgba(99, 102, 241, 0.4);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
     color: #6366f1;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    word-break: break-all;
-    overflow-x: auto;
-    white-space: nowrap;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+#shortUrl {
+    display: none;
 }
 
 .btn-copy {
