@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Shortener - Shorten Your URLs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Link Shortener</h1>
+            <p>Transform long URLs into short, shareable links</p>
+        </header>
+
+        <div class="shortener-box">
+            <form id="urlForm">
+                <div class="input-group">
+                    <input 
+                        type="url" 
+                        id="longUrl" 
+                        placeholder="Enter your long URL here..." 
+                        required
+                    >
+                    <button type="submit" class="btn-primary">Shorten</button>
+                </div>
+            </form>
+
+            <div id="result" class="result hidden">
+                <div class="result-content">
+                    <p class="result-label">Your shortened URL:</p>
+                    <div class="short-url-container">
+                        <input type="text" id="shortUrl" readonly>
+                        <button id="copyBtn" class="btn-copy">Copy</button>
+                    </div>
+                    <p class="success-message hidden" id="copyMessage">✓ Copied to clipboard!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="urls-section">
+            <h2>Recent URLs</h2>
+            <div id="urlsList" class="urls-list">
+                <p class="no-urls">No URLs yet. Create your first short link above!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ | Simple & Fast URL Shortener</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
