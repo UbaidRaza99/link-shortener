@@ -33,8 +33,10 @@ urlForm.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Show result
+            // Show result with cleaner display
+            const shortCode = data.shortUrl.split('/').pop();
             shortUrlInput.value = data.shortUrl;
+            shortUrlInput.dataset.fullUrl = data.shortUrl;
             resultDiv.classList.remove('hidden');
             
             // Clear form
@@ -53,10 +55,22 @@ urlForm.addEventListener('submit', async (e) => {
 
 // Copy to clipboard
 copyBtn.addEventListener('click', () => {
-    shortUrlInput.select();
-    document.execCommand('copy');
+    const fullUrl = shortUrlInput.dataset.fullUrl || shortUrlInput.value;
     
-    // Show success message
+    // Modern clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            showCopySuccess();
+        });
+    } else {
+        // Fallback
+        shortUrlInput.select();
+        document.execCommand('copy');
+        showCopySuccess();
+    }
+});
+
+function showCopySuccess() {
     copyMessage.classList.remove('hidden');
     copyBtn.textContent = 'Copied!';
     
@@ -64,7 +78,7 @@ copyBtn.addEventListener('click', () => {
         copyMessage.classList.add('hidden');
         copyBtn.textContent = 'Copy';
     }, 2000);
-});
+}
 
 // Load URLs list
 async function loadUrls() {
@@ -83,7 +97,10 @@ async function loadUrls() {
         urlsList.innerHTML = urls.map(url => `
             <div class="url-item">
                 <div class="url-info">
-                    <div class="url-short" title="${url.shortUrl}">${formatUrlDisplay(url.shortUrl)}</div>
+                    <div class="url-short" title="${url.shortUrl}" onclick="copyToClipboard('${url.shortUrl}', this)" style="cursor: pointer;">
+                        ${formatUrlDisplay(url.shortUrl)}
+                        <span style="font-size: 0.8em; opacity: 0.6; margin-left: 8px;">📋 Click to copy</span>
+                    </div>
                     <div class="url-long">${url.longUrl}</div>
                     <div class="url-meta">
                         Created: ${formatDate(url.createdAt)} | Clicks: ${url.clicks}
@@ -134,20 +151,27 @@ function formatDate(dateString) {
     });
 }
 
+// Copy to clipboard helper
+function copyToClipboard(text, element) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            const original = element.innerHTML;
+            element.innerHTML = '✅ Copied!';
+            setTimeout(() => {
+                element.innerHTML = original;
+            }, 1500);
+        });
+    } else {
+        alert('Full URL: ' + text);
+    }
+}
+
 // Format URL for better display
 function formatUrlDisplay(url) {
     try {
-        const urlObj = new URL(url);
-        const domain = urlObj.hostname;
-        const path = urlObj.pathname;
-        
-        // Shorten domain for display
-        let shortDomain = domain.replace('www.', '');
-        if (shortDomain.length > 30) {
-            shortDomain = shortDomain.substring(0, 27) + '...';
-        }
-        
-        return shortDomain + path;
+        // Extract just the short code for cleaner display
+        const shortCode = url.split('/').pop();
+        return `🔗 ${shortCode}`;
     } catch {
         return url;
     }

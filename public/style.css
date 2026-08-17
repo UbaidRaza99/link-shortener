@@ -302,11 +302,12 @@ header p {
 .url-short {
     color: #6366f1;
     font-weight: 700;
-    font-size: 0.95em;
+    font-size: 1.4em;
     margin-bottom: 8px;
     word-break: break-all;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.05em;
     overflow-wrap: break-word;
+    font-family: 'Courier New', monospace;
 }
 
 .url-long {
