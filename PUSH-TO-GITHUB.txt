@@ -1,0 +1,86 @@
+===========================================
+   GITHUB PUSH COMMANDS
+===========================================
+
+Step 1: Terminal mein ye folder open karein
+-------------------------------------------
+cd "C:\Users\ubaid\OneDrive\Desktop\Link Shortener\link-shortener"
+
+
+Step 2: Remote URL add karein (APNA URL LAGAYEIN)
+--------------------------------------------------
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
+
+Example:
+git remote add origin https://github.com/ubaid123/link-shortener.git
+
+
+Step 3: Push karein
+-------------------
+git push -u origin main
+
+
+Step 4: GitHub Credentials
+---------------------------
+- Username enter karein
+- Password mein Personal Access Token enter karein
+  (Regular password kaam nahi karega agar 2FA enabled hai)
+
+
+===========================================
+   PERSONAL ACCESS TOKEN KAISE BANAYEIN
+===========================================
+
+1. GitHub pe jaayein: https://github.com/settings/tokens
+2. "Generate new token" → "Generate new token (classic)"
+3. Note: "Link Shortener Deploy"
+4. Expiration: 90 days (ya No expiration)
+5. Permissions: Check "repo" (full control of private repositories)
+6. "Generate token" button click karein
+7. Token COPY kar lein (sirf ek baar dikhega!)
+8. Push command mein password ki jagah ye token paste karein
+
+
+===========================================
+   ALTERNATIVE: GITHUB DESKTOP
+===========================================
+
+Agar command line se issue ho:
+
+1. GitHub Desktop download: https://desktop.github.com
+2. Install karein aur login karein
+3. File → "Add Existing Repository"
+4. Path select: C:\Users\ubaid\OneDrive\Desktop\Link Shortener\link-shortener
+5. "Publish Repository" button click karein
+6. Repository name confirm karein
+7. Done!
+
+
+===========================================
+   TROUBLESHOOTING
+===========================================
+
+Error: "remote origin already exists"
+Fix: git remote remove origin
+     Then add again
+
+Error: "Authentication failed"
+Fix: Personal Access Token use karein password ki jagah
+
+Error: "Permission denied"
+Fix: Check GitHub account permissions
+
+
+===========================================
+   VERIFY PUSH SUCCESS
+===========================================
+
+GitHub repository page refresh karein
+Saari files dikhengi:
+- README.md
+- server.js
+- public folder
+- package.json
+- etc.
+
+===========================================
