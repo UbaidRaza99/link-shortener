@@ -83,7 +83,7 @@ async function loadUrls() {
         urlsList.innerHTML = urls.map(url => `
             <div class="url-item">
                 <div class="url-info">
-                    <div class="url-short">${url.shortUrl}</div>
+                    <div class="url-short" title="${url.shortUrl}">${formatUrlDisplay(url.shortUrl)}</div>
                     <div class="url-long">${url.longUrl}</div>
                     <div class="url-meta">
                         Created: ${formatDate(url.createdAt)} | Clicks: ${url.clicks}
@@ -132,4 +132,23 @@ function formatDate(dateString) {
         hour: '2-digit',
         minute: '2-digit'
     });
+}
+
+// Format URL for better display
+function formatUrlDisplay(url) {
+    try {
+        const urlObj = new URL(url);
+        const domain = urlObj.hostname;
+        const path = urlObj.pathname;
+        
+        // Shorten domain for display
+        let shortDomain = domain.replace('www.', '');
+        if (shortDomain.length > 30) {
+            shortDomain = shortDomain.substring(0, 27) + '...';
+        }
+        
+        return shortDomain + path;
+    } catch {
+        return url;
+    }
 }

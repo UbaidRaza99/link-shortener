@@ -193,13 +193,16 @@ header p {
 #shortUrl {
     flex: 1;
     padding: 14px 20px;
-    font-size: 16px;
+    font-size: 14px;
     border: 2px solid rgba(99, 102, 241, 0.4);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
     color: #6366f1;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
+    word-break: break-all;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .btn-copy {
@@ -299,10 +302,11 @@ header p {
 .url-short {
     color: #6366f1;
     font-weight: 700;
-    font-size: 1.15em;
+    font-size: 0.95em;
     margin-bottom: 8px;
     word-break: break-all;
     letter-spacing: 0.01em;
+    overflow-wrap: break-word;
 }
 
 .url-long {
@@ -374,5 +378,22 @@ footer {
     .url-actions {
         width: 100%;
         justify-content: flex-end;
+    }
+
+    #shortUrl {
+        font-size: 12px;
+    }
+
+    .url-short {
+        font-size: 0.85em;
+    }
+
+    .short-url-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-copy {
+        width: 100%;
     }
 }
